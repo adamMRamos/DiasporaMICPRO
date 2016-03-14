@@ -3,6 +3,7 @@ package com.rapture.diaspora.helpers;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Pool;
+import com.rapture.diaspora.DiasporaGameMaster;
 import com.rapture.diaspora.gameobjects.DiasporaActor;
 import com.rapture.diaspora.gameobjects.DiasporaEnemy;
 import com.rapture.diaspora.gameobjects.DiasporaPlayer;
@@ -15,7 +16,7 @@ public class GamePool
 			@Override
 			protected DiasporaEnemy newObject()
 			{
-				return new DiasporaEnemy(AssetLoader.enemy, 0, 0, 128f, 128f, 0f);
+				return new DiasporaEnemy(AssetLoader.enemy, 0, 0, 128f, 128f, 0f, 1000, 300);
 			}
 		};
 	
@@ -45,20 +46,20 @@ public class GamePool
 		return projectile;
 	}
 
-	public DiasporaEnemy spawnEnemy(DiasporaPlayer player1, Vector2 spawnPosition)
+	public DiasporaEnemy spawnEnemy(DiasporaPlayer player1, DiasporaGameMaster master, Vector2 spawnPosition)
 	{
 		DiasporaEnemy enemy = enemyPool.obtain();
-		enemy.intialize(player1, spawnPosition.x, spawnPosition.y);
+		enemy.intialize(player1, master, spawnPosition.x, spawnPosition.y);
 
 		activeActors.add(enemy);
 		
 		return enemy;
 	}
 	
-	public DiasporaEnemy spawnEnemy(DiasporaPlayer player1)
+	public DiasporaEnemy spawnEnemy(DiasporaPlayer player1, DiasporaGameMaster master)
 	{
 		DiasporaEnemy enemy = enemyPool.obtain();
-		enemy.intialize(player1, 700, 700);
+		enemy.intialize(player1, master, 700, 700);
 
 		activeActors.add(enemy);
 		

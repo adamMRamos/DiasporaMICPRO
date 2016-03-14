@@ -42,9 +42,10 @@ public class GameWorld
 	
 	private void updatePlayer(float delta)
 	{
-		if (player1.alive) {
+		if (player1.alive) 
 			player1.update(delta);
-		}
+		else 
+			Gdx.app.log("H", ">>>");
 	}
 	
 	private Array<Collidable> getCollidingActors()

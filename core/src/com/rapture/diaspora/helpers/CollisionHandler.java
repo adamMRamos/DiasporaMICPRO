@@ -1,11 +1,14 @@
 package com.rapture.diaspora.helpers;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.Intersector;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
 import com.rapture.diaspora.gameobjects.Collidable;
 import com.rapture.diaspora.gameobjects.DiasporaActor;
 import com.rapture.diaspora.gameobjects.DiasporaBody;
+import com.rapture.diaspora.gameobjects.DiasporaPlayer;
+import com.rapture.diaspora.gameobjects.DiasporaProjectile;
 
 public class CollisionHandler 
 {
@@ -29,8 +32,6 @@ public class CollisionHandler
 						
 						collidedActorTable[i+j] = true;
 						
-						//actorA.collide(actorB);
-						//actorB.collide(actorA);
 						if (actorA instanceof DiasporaActor && actorB instanceof DiasporaActor) {
 							handleActorCollision((DiasporaActor)actorA, (DiasporaActor)actorB);
 						}
@@ -51,7 +52,7 @@ public class CollisionHandler
 		Vector2 actorACurrentVelocity = actorA.getVelocity();
 		Vector2 actorBCurrentVelocity = actorB.getVelocity();
 		
-		//calculate final velocity for actorB
+		//calculate first term of equation for actorB
 		Vector2 firstVectorB = actorACurrentVelocity.cpy().scl((2*actorA.getMass()) /
 				(actorA.getMass()+actorB.getMass()));
 		Vector2 secondVectorB = actorBCurrentVelocity.cpy().scl((actorA.getMass()-actorB.getMass()) /
@@ -60,13 +61,13 @@ public class CollisionHandler
 		//calculate final velocity for actorB
 		Vector2 actorBFinalVelocity = firstVectorB.sub(secondVectorB);
 		
-		//calculate final velocity for actorB
+		//calculate first term of equation for actorA
 		Vector2 firstVectorA = actorACurrentVelocity.cpy().scl((actorA.getMass()-actorB.getMass()) /
 				(actorA.getMass()+actorB.getMass()));
 		Vector2 secondVectorA = actorBCurrentVelocity.cpy().scl((2*actorB.getMass()) /
 				(actorA.getMass()+actorB.getMass()));
 			
-		//calculate final velocity for actorB
+		//calculate final velocity for actorA
 		Vector2 actorAFinalVelocity = firstVectorA.add(secondVectorA);
 				
 		actorA.collide(actorB, actorAFinalVelocity);

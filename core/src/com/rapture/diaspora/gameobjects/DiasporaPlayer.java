@@ -6,19 +6,18 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 import com.rapture.diaspora.DiasporaGameMaster;
 
-public class DiasporaPlayer extends DiasporaActor 
+public class DiasporaPlayer extends DiasporaFightingActor 
 {
 	private static final float THRUST = 100;
-	
-	private DiasporaGameMaster master;
 	
 	private int directionOfThrust;
 	private boolean hasFired;
 	private boolean firing;
 	
-	public DiasporaPlayer(DiasporaGameMaster master, TextureRegion textureRegion, float x, float y, float width, float height, float rotation)
+	public DiasporaPlayer(DiasporaGameMaster master, TextureRegion textureRegion, float x, float y, float width, 
+			float height, float rotation, float maxHealth, float accelLimit)
 	{
-		super(textureRegion, x, y, width, height, rotation);
+		super(textureRegion, x, y, width, height, rotation, maxHealth, accelLimit);
 		
 		this.master = master;
 		
@@ -83,21 +82,12 @@ public class DiasporaPlayer extends DiasporaActor
 		return vectorOfThrust;
 	}
 	
-	private float hasThrust()
+	@Override
+	protected float hasThrust()
 	{
 		return Math.abs(directionOfThrust);
 	}
 
-	@Override
-	protected Vector2 updateAcceleration(Vector2 acceleration)
-	{
-		acceleration.add(vectorOfThrust.cpy());
-		acceleration.scl(hasThrust());
-		acceleration.limit(800);
-		
-		return acceleration;
-	}
-	
 	public void update(float delta)
 	{
 		updateDirection();

@@ -4,7 +4,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Pool.Poolable;
 
-public class DiasporaProjectile extends DiasporaActor implements Poolable
+public class DiasporaProjectile extends DiasporaFightingActor implements Poolable
 {
 	private static final float THRUST = 100;
 
@@ -12,7 +12,7 @@ public class DiasporaProjectile extends DiasporaActor implements Poolable
 	
 	public DiasporaProjectile(TextureRegion texture, float width, float height) 
 	{
-		super(texture, 0, 0, width, height, 0);
+		super(texture, 0, 0, width, height, 0, 100, 1000);
 
 		originPosition = new Vector2(0, 0);
 		
@@ -58,13 +58,6 @@ public class DiasporaProjectile extends DiasporaActor implements Poolable
 	}
 
 	@Override
-	protected Vector2 updateAcceleration(Vector2 acceleration) 
-	{
-		acceleration.add(vectorOfThrust.cpy());
-		return acceleration;
-	}
-
-	@Override
 	public void reset() 
 	{
 		body.setPosition(0,0);
@@ -73,6 +66,7 @@ public class DiasporaProjectile extends DiasporaActor implements Poolable
 		velocity.set(0,0);
 		acceleration.set(0,0);
 		rotation = 0;
+		currentHealth = maximumHealth;
 		alive = false;
 	}
 
@@ -84,16 +78,15 @@ public class DiasporaProjectile extends DiasporaActor implements Poolable
 		checkDistance();
 	}
 	
-	@Override
-	public void collide(Collidable collider, Vector2 finalVelocity)
-	{
-		super.collide(collider, finalVelocity);
-		alive = false;
-	}
-	
 	//Getters && Setters
 	public Vector2 getOriginPosition()
 	{
 		return originPosition.cpy();
+	}
+
+	@Override
+	protected float hasThrust() 
+	{
+		return 1;
 	}
 }

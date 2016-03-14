@@ -8,7 +8,7 @@ import com.rapture.diaspora.gameobjects.DiasporaPlayer;
 
 public class EnemySpawnHandler 
 {
-	private static final float TIMER_LIMIT = 15;
+	private static final float TIMER_LIMIT = 5;
 	
 	private DiasporaGameMaster master;
 	private float spawnTimer;
@@ -34,12 +34,12 @@ public class EnemySpawnHandler
 		Vector2 spawnPosition = new Vector2(master.actors.player1.getX() + MathUtils.sinDeg(randomAngle)*radius, 
 				master.actors.player1.getY() + MathUtils.cosDeg(randomAngle)*radius);
 		
-		master.pool.spawnEnemy(player1, spawnPosition);
+		master.pool.spawnEnemy(player1, master, spawnPosition);
 	}
 	
 	public void spawnEnemy(DiasporaPlayer player1)
 	{
-		master.pool.spawnEnemy(player1);
+		master.pool.spawnEnemy(player1, master);
 	}
 	
 	private void updateSpawning()

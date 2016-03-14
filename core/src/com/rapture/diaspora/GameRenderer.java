@@ -131,11 +131,13 @@ public class GameRenderer
 	
 	private void renderPlayerHitBox()
 	{
-		shapeRenderer.setProjectionMatrix(camera.combined);
-		shapeRenderer.begin(ShapeType.Filled);
-		shapeRenderer.setColor(Color.RED);
-		shapeRenderer.circle(player1.body.getBoundingCircle().x, player1.body.getBoundingCircle().y, player1.body.getBoundingCircle().radius);
-		shapeRenderer.end();
+		if (player1.alive) {
+			shapeRenderer.setProjectionMatrix(camera.combined);
+			shapeRenderer.begin(ShapeType.Filled);
+			shapeRenderer.setColor(Color.RED);
+			shapeRenderer.circle(player1.body.getBoundingCircle().x, player1.body.getBoundingCircle().y, player1.body.getBoundingCircle().radius);
+			shapeRenderer.end();
+		}
 	}
 	
 	public void logValues()
