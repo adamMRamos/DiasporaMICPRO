@@ -20,7 +20,7 @@ public class DiasporaGameMaster
 	{
 		keyLog = new KeyLogHandler();
 		pool = new GamePool();
-		actors = new GameActors(new DiasporaPlayer(this, AssetLoader.testImg, 900f, 900f, 100f, 100f, 0f));
+		actors = new GameActors(new DiasporaPlayer(this, AssetLoader.testImg, 900f, 900f, 100f, 400f, 0f));
 		enemySpawnHandler = new EnemySpawnHandler(this, 300);
 		
 		world = new GameWorld(this);
