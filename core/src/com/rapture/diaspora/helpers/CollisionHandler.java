@@ -70,6 +70,11 @@ public class CollisionHandler
 		//calculate final velocity for actorA
 		Vector2 actorAFinalVelocity = firstVectorA.add(secondVectorA);
 				
+		//actorBFinalVelocity = NewVelocityB = ((2*a.mass / (a.mass + b.mass))*a.velocity) - (((a.mass - b.mass)/(a.mass + b.mass))*b.velocity)
+		//actorAFinalVelocity = NewVelocityA = (((a.mass - b.mass)/(a.mass + b.mass))*a.velocity) - ((2*b.mass / (a.mass + b.mass))*b.velocity)
+		//
+		//see http://hyperphysics.phy-astr.gsu.edu/hbase/colsta.html
+		
 		actorA.collide(actorB, actorAFinalVelocity);
 		actorB.collide(actorA, actorBFinalVelocity);
 	}
