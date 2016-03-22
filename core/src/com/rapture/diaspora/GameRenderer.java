@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 import com.rapture.diaspora.gameobjects.DiasporaActor;
+import com.rapture.diaspora.gameobjects.DiasporaPlanet;
 import com.rapture.diaspora.gameobjects.DiasporaPlayer;
 import com.rapture.diaspora.gameobjects.GameActors;
 import com.rapture.diaspora.helpers.AssetLoader;
@@ -21,6 +22,7 @@ public class GameRenderer
 	float y = 200;
 	
 	private DiasporaPlayer player1;
+	private DiasporaPlanet planet1;
 	private GamePool pool;
 	
 	private GameActors actors;
@@ -58,6 +60,7 @@ public class GameRenderer
 		pool = master.pool;
 		actors = master.actors;
 		player1 = actors.player1;
+		planet1 = actors.planet1;
 		
 		camera.setTarget(player1.getX(), player1.getY());
 	}
@@ -102,6 +105,9 @@ public class GameRenderer
 		
 		renderPoolActors(batch);
 		renderPlayer(batch);
+
+		//render planet1
+		planet1.render(batch);
 		
 		batch.end();
 	}

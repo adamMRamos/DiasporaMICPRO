@@ -162,12 +162,11 @@ public class DiasporaEnemy extends DiasporaFightingActor implements Poolable
 	}
 	
 	@Override
-	protected Vector2 updateVectorOfThrust(Vector2 vectorOfThrust) 
+	protected float getThrust()
 	{
-		vectorOfThrust = vectorOfRotation.cpy().scl(THRUST);
-		return vectorOfThrust;
+		return THRUST;
 	}
-
+	
 	@Override
 	public void update(float delta)
 	{

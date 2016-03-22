@@ -76,10 +76,9 @@ public class DiasporaPlayer extends DiasporaFightingActor
 	}
 	
 	@Override
-	protected Vector2 updateVectorOfThrust(Vector2 vectorOfThrust)
+	protected float getThrust()
 	{
-		vectorOfThrust = vectorOfRotation.cpy().scl(THRUST * directionOfThrust);
-		return vectorOfThrust;
+		return THRUST * directionOfThrust;
 	}
 	
 	@Override

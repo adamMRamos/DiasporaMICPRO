@@ -3,6 +3,7 @@ package com.rapture.diaspora;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.utils.Array;
 import com.rapture.diaspora.gameobjects.Collidable;
+import com.rapture.diaspora.gameobjects.DiasporaPlanet;
 import com.rapture.diaspora.gameobjects.DiasporaPlayer;
 import com.rapture.diaspora.gameobjects.GameActors;
 import com.rapture.diaspora.helpers.CollisionHandler;
@@ -11,6 +12,8 @@ import com.rapture.diaspora.helpers.GamePool;
 public class GameWorld 
 {
 	public DiasporaGameMaster master;
+	
+	public DiasporaPlanet planet1;
 	
 	public DiasporaPlayer player1;
 	public GameActors actors;
@@ -25,6 +28,7 @@ public class GameWorld
 	{
 		actors = master.actors;
 		player1 = actors.player1;
+		planet1 = actors.planet1;
 		
 		pool = master.pool;
 		master.enemySpawnHandler.spawnEnemy(player1);
@@ -55,6 +59,8 @@ public class GameWorld
 		collidingActors.add(player1);
 		
 		collidingActors.addAll(pool.getActiveActors());
+
+		collidingActors.add(planet1);
 		
 		return collidingActors;
 	}
@@ -73,6 +79,9 @@ public class GameWorld
 		updatePlayer(delta);
 		
 		updateCollidables();
+
+		//update planet.
+		planet1.update(delta);
 		
 		updateEnemySpawnHandler(delta);
 		

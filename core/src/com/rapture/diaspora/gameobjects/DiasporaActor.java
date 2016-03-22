@@ -46,7 +46,12 @@ public abstract class DiasporaActor extends DiasporaSprite implements Collidable
 	
 	protected abstract float updateRotation(float rotation);
 	
-	protected abstract Vector2 updateVectorOfThrust(Vector2 vectorOfThrust);
+	protected abstract float getThrust();
+	
+	protected void updateVectorOfThrust() 
+	{
+		vectorOfThrust = vectorOfRotation.cpy().scl(getThrust());
+	}
 	
 	protected abstract Vector2 updateAcceleration(Vector2 acceleration);
 	
@@ -75,7 +80,7 @@ public abstract class DiasporaActor extends DiasporaSprite implements Collidable
 		
 		super.update(delta);
 		
-		vectorOfThrust = updateVectorOfThrust(vectorOfThrust);
+		updateVectorOfThrust();
 		acceleration = updateAcceleration(acceleration);
 		
 		updateVelocity(delta);

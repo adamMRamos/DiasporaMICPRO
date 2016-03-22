@@ -1,5 +1,6 @@
 package com.rapture.diaspora;
 
+import com.rapture.diaspora.gameobjects.DiasporaPlanet;
 import com.rapture.diaspora.gameobjects.DiasporaPlayer;
 import com.rapture.diaspora.gameobjects.GameActors;
 import com.rapture.diaspora.helpers.AssetLoader;
@@ -20,7 +21,10 @@ public class DiasporaGameMaster
 	{
 		keyLog = new KeyLogHandler();
 		pool = new GamePool();
-		actors = new GameActors(new DiasporaPlayer(this, AssetLoader.testImg, 900f, 900f, 100f, 100f, 0f, 800, 800));
+		
+		actors = new GameActors(new DiasporaPlayer(this, AssetLoader.testImg, 900f, 900f, 100f, 100f, 0f, 18000, 900),
+				new DiasporaPlanet(AssetLoader.planet, 100f, 100f, 512f, 512f, 0));
+		
 		enemySpawnHandler = new EnemySpawnHandler(this, 1000);
 		
 		world = new GameWorld(this);

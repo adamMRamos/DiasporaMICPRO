@@ -10,9 +10,12 @@ public class AssetLoader
 	public static Texture texture;
 	public static Texture enemyTexture;
 	public static Texture proj;
+	public static Texture aPlanet;
+	
 	public static TextureRegion testImg;
 	public static TextureRegion enemy;
 	public static TextureRegion projectile;
+	public static TextureRegion planet;
 	
 	public static void load()
 	{
@@ -30,8 +33,15 @@ public class AssetLoader
 		
 		proj = new Texture(Gdx.files.internal("Projectile.png"));
 		proj.setFilter(TextureFilter.Nearest, TextureFilter.Nearest);
+		
 		projectile = new TextureRegion(proj, 0, 0, 64, 64);
 		projectile.flip(false, true);
+		
+		aPlanet = new Texture(Gdx.files.internal("Planet.png"));
+		aPlanet.setFilter(TextureFilter.Nearest, TextureFilter.Nearest);
+		
+		planet = new TextureRegion(aPlanet, 0, 0, 512, 512);
+		planet.flip(false, true);
 		
 	}
 	

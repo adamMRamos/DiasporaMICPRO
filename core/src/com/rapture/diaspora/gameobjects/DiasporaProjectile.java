@@ -49,14 +49,13 @@ public class DiasporaProjectile extends DiasporaFightingActor implements Poolabl
 	{
 		return rotation;
 	}
-
+	
 	@Override
-	protected Vector2 updateVectorOfThrust(Vector2 vectorOfThrust) 
+	protected float getThrust()
 	{
-		vectorOfThrust = vectorOfRotation.cpy().scl(THRUST);
-		return vectorOfThrust;
+		return THRUST;
 	}
-
+	
 	@Override
 	public void reset() 
 	{
